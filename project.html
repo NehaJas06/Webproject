@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Shop</title>
+    <style>
+        .tech-shop-container { background-color: #221a1a; display: flex; padding-top: 46px; flex-direction: column; overflow: hidden; align-items: center; }
+        .header-wrapper { display: flex; width: 100%; max-width: 1231px; gap: 20px; flex-wrap: wrap; justify-content: space-between; }
+        .shop-title { color: #fff; align-self: start; font: 700 24px Inter, sans-serif; }
+        .header-icons { display: flex; align-items: start; gap: 40px 54px; }
+        .icon { aspect-ratio: 1; object-fit: contain; object-position: center; width: 36px; }
+        .hero-section { margin-top: 59px; width: 920px; max-width: 100%; }
+        .hero-content { gap: 20px; display: flex; }
+        .hero-text { display: flex; flex-direction: column; line-height: normal; width: 45%; margin-left: 0; }
+        .hero-text-content { display: flex; width: 100%; flex-direction: column; align-self: stretch; align-items: start; color: #fff; margin: auto 0; font: 700 20px Inter, sans-serif; }
+        .product-name { font-size: 24px; }
+        .product-tagline { font-size: 40px; align-self: stretch; margin-top: 30px; }
+        .price-container { display: flex; margin-top: 61px; width: 248px; max-width: 100%; gap: 40px 62px; }
+        .price-wrapper { align-self: start; display: flex; flex: 1; }
+        .price-icon { aspect-ratio: 0.96; object-fit: contain; object-position: center; width: 23px; }
+        .shop-now-btn { background-color: #ee1a1a; margin-top: 36px; padding: 7px 23px 15px; }
+        .hero-image { display: flex; flex-direction: column; line-height: normal; width: 55%; margin-left: 20px; }
+        .hero-product-image { aspect-ratio: 0.95; object-fit: contain; object-position: center; width: 100%; flex-grow: 1; }
+        .featured-products-title { color: #fff; margin-top: 154px; font: 700 32px Inter, sans-serif; }
+        .featured-products-grid { align-self: stretch; display: flex; margin-top: 102px; width: 100%; color: #fff; font: 700 14px Inter, sans-serif; }
+        .product-card { background-color: #221a1a; align-self: end; display: flex; flex-direction: column; align-items: start; margin: 171px -29px 0 0; padding: 19px 47px 34px; }
+        .product-image { aspect-ratio: 0.67; object-fit: contain; object-position: center; width: 103px; margin-top: 34px; max-width: 100%; }
+        .product-price { display: flex; margin-top: 32px; gap: 24px; white-space: nowrap; }
+        .price-tag { align-self: start; display: flex; }
+        .price-icon { aspect-ratio: 1; object-fit: contain; object-position: center; width: 19px; }
+        .top-products-title { color: #fff; margin-top: 27px; font: 700 32px Inter, sans-serif; }
+        .product-categories { display: flex; width: 100%; max-width: 1068px; gap: 20px; color: #fff; white-space: nowrap; flex-wrap: wrap; justify-content: space-between; margin: 60px 0 0 25px; font: 700 24px Inter, sans-serif; }
+        .category-btn { background-color: #221a1a; padding: 6px 25px 19px; }
+        .product-grid { margin-top: 54px; width: 100%; max-width: 1308px; }
+        .product-row { gap: 20px; display: flex; }
+        .product-col { display: flex; flex-direction: column; line-height: normal; width: 25%; margin-left: 0; }
+        .product-item { background-color: #221a1a; box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25); display: flex; width: 100%; flex-direction: column; font-family: Inter, sans-serif; font-weight: 700; margin: 0 auto; padding: 36px 0 15px; border: 1px solid #fff; }
+        .product-details { display: flex; flex-direction: column; font-size: 24px; color: #fff; padding: 0 64px 0 24px; }
+        .product-img { aspect-ratio: 1.3; object-fit: contain; object-position: center; width: 169px; align-self: center; max-width: 100%; }
+        .product-name { align-self: start; margin-top: 21px; }
+        .product-description { display: flex; margin-top: 13px; }
+        .product-separator { color: rgba(0, 0, 0, 0.24); font-size: 24px; flex-grow: 1; flex-basis: auto; margin: auto -286px auto 0; }
+        .product-type { color: #fff; font-size: 18px; flex-grow: 1; width: 229px; flex-basis: auto; }
+        .add-to-cart-btn { background-color: #fd2a2a; width: 262px; max-width: 100%; font-size: 24px; color: #fff; margin: 55px 28px 0; padding: 14px 53px 23px; }
+        .browse-all-btn { background-color: #221a1a; flex-grow: 1; color: #fff; width: 100%; padding: 161px 70px; font: 700 32px Inter, sans-serif; border: 1px solid #fff; }
+        .advantages-title { color: #fff; margin-top: 43px; font: 700 32px Inter, sans-serif; }
+        .advantages-grid { align-self: start; display: flex; width: 100%; max-width: 1216px; gap: 20px; color: #fff; justify-content: space-between; margin: 120px 0 0 29px; font: 700 20px Inter, sans-serif; }
+        .advantage-item { align-self: start; display: flex; margin-top: 6px; align-items: start; gap: 16px; }
+        .advantage-icon { aspect-ratio: 0.85; object-fit: contain; object-position: center; width: 41px; }
+        .advantage-text { display: flex; flex-direction: column; }
+        .footer { background-color: #221a1a; align-self: stretch; margin-top: 76px; width: 100%; padding: 28px 80px 134px 23px; }
+        .footer-content { gap: 20px; display: flex; }
+        .footer-col { display: flex; flex-direction: column; line-height: normal; width: 25%; margin-left: 0; }
+        .footer-section { display: flex; flex-direction: column; align-items: start; color: #fff; font: 700 24px Inter, sans-serif; }
+        .footer-title { font-size: 24px; align-self: start; }
+        .footer-link { align-self: start; margin-top: 37px; }
+        .newsletter-form { display: flex; flex-direction: column; align-items: start; }
+        .newsletter-input { font-size: 20px; margin-top: 31px; }
+        .subscribe-btn { background-color: #f91616; margin-top: 38px; white-space: nowrap; padding: 9px 34px 20px; }
+        .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+        @media (max-width: 991px) {
+            .header-wrapper { max-width: 100%; }
+            .hero-section { margin-top: 40px; }
+            .hero-content { flex-direction: column; align-items: stretch; gap: 0; }
+            .hero-text, .hero-image { width: 100%; }
+            .hero-text-content { margin-top: 40px; }
+            .price-container { margin-top: 40px; }
+            .hero-product-image { max-width: 100%; margin-top: 40px; }
+            .featured-products-title { margin-top: 40px; }
+            .featured-products-grid { max-width: 100%; margin-top: 40px; }
+            .product-card { margin-top: 40px; padding: 0 20px; }
+            .product-image { margin-top: 40px; }
+            .product-categories { max-width: 100%; margin-top: 40px; white-space: initial; }
+            .category-btn { padding: 0 20px; }
+            .product-grid { max-width: 100%; }
+            .product-row { flex-direction: column; align-items: stretch; gap: 0; }
+            .product-col { width: 100%; }
+            .product-item { margin-top: 12px; }
+            .product-details { padding: 0 20px; }
+            .add-to-cart-btn { margin: 40px 10px 0; padding: 0 20px; }
+            .browse-all-btn { margin-top: 13px; padding: 100px 20px; }
+            .advantages-title { margin-top: 40px; }
+            .advantages-grid { max-width: 100%; margin-top: 40px; }
+            .footer { max-width: 100%; margin-top: 40px; padding: 0 20px 100px; }
+            .footer-content { flex-direction: column; align-items: stretch; gap: 0; }
+            .footer-col { width: 100%; }
+            .footer-section { margin-top: 40px; }
+            .subscribe-btn { white-space: initial; padding: 0 20px; }
+        }
+    </style>
+</head>
+<body>
+    <section class="tech-shop-container">
+        <header class="header-wrapper">
+            <h1 class="shop-title">Tech-Shop</h1>
+            <nav class="header-icons">
+                <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/5bcf57c619181a68f082c2c3fb8bdb6ae4e36fd8373bbfb2e7dde55be1b3b5c1?placeholderIfAbsent=true&apiKey=7c6eadc5edea4c4c8c1cb1bf9a911cb5" class="icon" alt="Navigation icon 1" />
+                <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/b812fd9048fe428d4f96606d9c6f03cdebf7d2ce2468138af20b76cd9155d213?placeholderIfAbsent=true&apiKey=7c6eadc5edea4c4c8c1cb1bf9a911cb5" class="icon" alt="Navigation icon 2" />
+                <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/c8c0f4e8fa1ef805bebd872fba143e1cf2bc3ae5f872ebbb834037134c58221f?placeholderIfAbsent=true&apiKey=7c6eadc5edea4c4c8c1cb1bf9a911cb5" class="icon" alt="Navigation icon 3" />
+            </nav>
+        </header>
+        <section class="hero-section">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="hero-text-content">
+                        <h2 class="product-name">Sony WH-XB910N</h2>
+                        <p class="product-tagline">Give Your Favourite <br /> Music A Boost.</p>
+                        <div class="price-container">
+                            <div class="price-wrapper">
+                                <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/f43d604025ae1bd58c9dcd38619b387f376cf91d96d37e95c8b9659ae7889574?placeholderIfAbsent=true&apiKey=7c6eadc5edea4c4c8c1cb1bf9a911cb5" class="price-icon" alt="Price icon" />
+                                <span>13,489</span>
+                            </div>
+                            <div class="price-wrapper">
+                                <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/f43d604025ae1bd58c9dcd38619b387f376cf91d96d37e95c8b9659ae7889574?placeholderIfAbsent=true&apiKey=7c6eadc5edea4c4c8c1cb1bf9a911cb5" class="price-icon" alt="Price icon" />
+                                <span>19,999</span>
+                            </div>
+                        </div>
+                        <button class="shop-now-btn">Shop Now</button>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/735dbfca0d6a1f9d81ba2ef6f79d5afa32b1177ea2485e58c6acd2b1b8972921?placeholderIfAbsent=true&apiKey=7c6eadc5edea4c4c8c1cb1bf9a911cb5" class="hero-product-image" alt="Sony WH-XB910N headphones" />
+                </div>
+            </div>
+        </section>
+        <h2 class="featured-products-title">Featured Products</h2>
+        <div class="featured-products-grid">
+            <article class="product-card">
+                <h3>JBL Endurance Run Sports</h3>
+                <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/cbef93186d941088bc96497587dfdd0468abe4c3b78513bc88c0d3543be59f04?placeholderIfAbsent=true&apiKey=7c6eadc5edea4c4c8c1cb1bf9a911cb5" class="product-image" alt="JBL Endurance Run Sports" />
+                <div class="product-price">
+                    <div class="price-tag">
+                        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/413f3bbbe6f23bfa108a71dc6e74d3cfaf4a93c76a7dbff6252ebfd1b1f7e259?placeholderIfAbsent=true&apiKey=7c6eadc5edea4c4c8c1cb1bf9a911cb5" class="price-icon" alt="Price icon" />
+                        <span>999</span>
+                    </div>
+                    <div class="price-tag">
+                        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/413f3bbbe6f23bfa108a71dc6e74d3cfaf4a93c76a7dbff6252ebfd1b1f7e259?placeholderIfAbsent=true&apiKey=7c6eadc5edea4c4c8c1cb1bf9a911cb5" class="price-icon" alt="Price icon" />
+                        <span>1,599</span>
+                    </div>
+                </div>
+            </article>
+            <article class="product-card">
+                <h3>boAt Airdopes 203</h3>
+                <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/36b3f65c7aa2158a414a32131596e245c470d8492843e4fe0391d44963d5d9c1?placeholderIfAbsent=true&apiKey=7c6eadc5edea4c4c8c1cb1bf9a911cb5" class="product-image" alt="boAt Airdopes 203" />
+                <div class="product-price">
+                    <div class="price-tag">
+                        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/413f3bbbe6f23bfa108a71dc6e74d3cfaf4a93c76a7dbff6252ebfd1b1f7e259?placeholderIfAbsent=true&apiKey=7c6eadc5edea4c4c8c1cb1bf9a911cb5" class="price-icon" alt="Price icon" />
+                        <span>1074</span>
+                    </div>
+                    <div class="price-tag">
+                        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/413f3bbbe6f23bfa108a71dc6e74d3cfaf4a93c76a7dbff6252ebfd1b1f7e259?placeholderIfAbsent=true&apiKey=7c6eadc5edea4c4c8c1cb1bf9a911cb5" class="price-icon" alt="Price icon" />
+                        <span>3999</span>
+                    </div>
+                </div>
+            </article>
+            <article class="product-card">
+                <h3>boAt Rockerz 203</h3>
+                <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/186d7714d17e45577922a7c31df956ac0a044c129facc00f044685f327009367?placeholderIfAbsent=true&apiKey=7c6eadc5edea4c4c8c1cb1bf9a911cb5" class="product-image" alt="boAt Rockerz 203" />
+                <div class="product-price">
+                    <div class="price-tag">
+                        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/413f3bbbe6f23bfa108a71dc6e74d3cfaf4a93c76a7dbff6252ebfd1b1f7e259?placeholderIfAbsent=true&apiKey=7c6eadc5edea4c4c8c1cb1bf9a911cb5" class="price-icon" alt="Price icon" />
+                        <span>1,299</span>
+                    </div>
+                    <div class="price-tag">
+                        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/413f3bbbe6f23bfa108a71dc6e74d3cfaf4a93c76a7dbff6252ebfd1b1f7e259?placeholderIfAbsent=true&apiKey=7c6eadc5edea4c4c8c1cb1bf9a911cb5" class="price-icon" alt="Price icon" />
+                        <FILE path="tech-shop-section.html">
+                        <span>3,999</span>
+                    </div>
+                </div>
+            </article>
+            <article class="product-card">
+                <h3>JBL Tune 760NC</h3>
+                <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/efc0840fa120121e98fd1f706b3d94a58755f3727792ef53a0da9fb8b3dd19ab?placeholderIfAbsent=true&apiKey=7c6eadc5edea4c4c8c1cb1bf9a911cb5" class="product-image" alt="JBL Tune 760NC" />
+                <div class="product-price">
+                    <div class="price-tag">
+                        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/413f3bbbe6f23bfa108a71dc6e74d3cfaf4a93c76a7dbff6252ebfd1b1f7e259?placeholderIfAbsent=true&apiKey=7c6eadc5edea4c4c8c1cb1bf9a911cb5" class="price-icon" alt="Price icon" />
+                        <span>5,999</span>
+                    </div>
+                    <div class="price-tag">
+                        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/413f3bbbe6f23bfa108a71dc6e74d3cfaf4a93c76a7dbff6252ebfd1b1f7e259?placeholderIfAbsent=true&apiKey=7c6eadc5edea4c4c8c1cb1bf9a911cb5" class="price-icon" alt="Price icon" />
+                        <span>7,999</span>
+                    </div>
+                </div>
+            </article>
+            <article class="product-card">
+                <h3>boAt Rockerz 255</h3>
+                <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/949d25fefc3e6950570a1d49762550776364c0ab195266eefbf7faad0e51a874?placeholderIfAbsent=true&apiKey=7c6eadc5edea4c4c8c1cb1bf9a911cb5" class="product-image" alt="boAt Rockerz 255" />
+                <div class="product-price">
+                    <div class="price-tag">
+                        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/413f3bbbe6f23bfa108a71dc6e74d3cfaf4a93c76a7dbff6252ebfd1b1f7e259?placeholderIfAbsent=true&apiKey=7c6eadc5edea4c4c8c1cb1bf9a911cb5" class="price-icon" alt="Price icon" />
+                        <span>899</span>
+                    </div>
+                    <div class="price-tag">
+                        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/413f3bbbe6f23bfa108a71dc6e74d3cfaf4a93c76a7dbff6252ebfd1b1f7e259?placeholderIfAbsent=true&apiKey=7c6eadc5edea4c4c8c1cb1bf9a911cb5" class="price-icon" alt="Price icon" />
+                        <span>2999</span>
+                    </div>
+                </div>
+            </article>
+        </div>
+        <h2 class="top-products-title">Top Products</h2>
+        <div class="product-categories">
+            <button class="category-btn">All</button>
+            <button class="category-btn">Headphones</button>
+            <button class="category-btn">Earbuds</button>
+            <button class="category-btn">Earphones</button>
+            <button class="category-btn">Neckbands</button>
+        </div>
+        <div class="product-grid">
+            <div class="product-row">
+                <div class="product-col">
+                    <article class="product-item">
+                        <div class="product-details">
+                            <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/b04dd1383299d097efad5e63ac7c3d8d1fa62b1a6281539d2fc403eef72ec492?placeholderIfAbsent=true&apiKey=7c6eadc5edea4c4c8c1cb1bf9a911cb5" class="product-img" alt="JBL Live 660NC" />
+                            <h3 class="product-name">JBL Live 660NC</h3>
+                        </div>
+                        <div class="product-description">
+                            <span class="product-separator">___________________________</span>
+                            <p class="product-type">Wireless Over-Ear NC Headphones</p>
+                        </div>
+                        <button class="add-to-cart-btn">Add to cart</button>
+                    </article>
+                </div>
+                <div class="product-col">
+                    <article class="product-item">
+                        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/426e6c4cba2b4dc7ec590533f22bf245168cce8fcdf92d7286fd71fe4ddc27f8?placeholderIfAbsent=true&apiKey=7c6eadc5edea4c4c8c1cb1bf9a911cb5" class="product-img" alt="boAt Rockerz 518" />
+                        <h3 class="product-name">boAt Rockerz 518</h3>
+                        <p class="product-type">On-Ear Wireless Headphones</p>
+                        <span class="product-separator">___________________________</span>
+                        <button class="add-to-cart-btn">Add to cart</button>
+                    </article>
+                </div>
+                <div class="product-col">
+                    <article class="product-item">
+                        <div class="product-details">
+                            <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/91f3d200503c1c8177e5ac41cafa8b6e6f817697ceebf065a663cb9c736a3d90?placeholderIfAbsent=true&apiKey=7c6eadc5edea4c4c8c1cb1bf9a911cb5" class="product-img" alt="boAt Airdopes 131" />
+                            <h3 class="product-name">boAt Airdopes 131</h3>
+                            <p class="product-type">Wireless In - Earbuds</p>
+                        </div>
+                        <span class="product-separator">___________________________</span>
+                        <button class="add-to-cart-btn">Add to cart</button>
+                    </article>
+                </div>
+                <div class="product-col">
+                    <article class="product-item">
+                        <div class="product-details">
+                            <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/ae9eb17ba21d65908b5cd5c7e23d70a882a7723c22583d3b4159f1be3146bd4a?placeholderIfAbsent=true&apiKey=7c6eadc5edea4c4c8c1cb1bf9a911cb5" class="product-img" alt="boAt Bassheads 110" />
+                            <h3 class="product-name">boAt Bassheads 110</h3>
+                            <p class="product-type">In Ear Wired Headphones</p>
+                        </div>
+                        <span class="product-separator">___________________________</span>
+                        <button class="add-to-cart-btn">Add to cart</button>
+                    </article>
+                </div>
+            </div>
+            <div class="product-row">
+                <div class="product-col">
+                    <article class="product-item">
+                        <h3 class="product-name">boAt Rockerz 410</h3>
+                        <p class="product-type">Bluetooth & Wired On-Ear Headphones</p>
+                        <button class="add-to-cart-btn">Add to cart</button>
+                    </article>
+                </div>
+                <div class="product-col">
+                    <article class="product-item">
+                        <h3 class="product-name">JBL Live 400 BT</h3>
+                        <div class="product-description">
+                            <span class="product-separator">___________________________</span>
+                            <p class="product-type">In Ear Wireless Neckbands</p>
+                        </div>
+                        <button class="add-to-cart-btn">Add to cart</button>
+                    </article>
+                </div>
+                <div class="product-col">
+                    <article class="product-item">
+                        <div class="product-description">
+                            <span class="product-separator">___________________________</span>
+                            <div class="product-details">
+                                <h3 class="product-name">Sony WH-XB910N</h3>
+                                <p class="product-type">Wireless Over-Ear Headphones</p>
+                            </div>
+                        </div>
+                        <button class="add-to-cart-btn">Add to cart</button>
+                    </article>
+                </div>
+                <div class="product-col">
+                    <article class="product-item">
+                        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/9125027e0992917c57b4869bdcc4ae8571b122a86086a8b941d7dd874b51b9cf?placeholderIfAbsent=true&apiKey=7c6eadc5edea4c4c8c1cb1bf9a911cb5" class="product-img" alt="JBL Tune 760NC" />
+                        <h3 class="product-name">JBL Tune 760NC</h3>
+                        <div class="product-description">
+                            <span class="product-separator">___________________________</span>
+                            <p class="product-type">Wireless Over Ear NC</p>
+                        </div>
+                        <button class="add-to-cart-btn">Add to cart</button>
+                    </article>
+                </div>
+            </div>
+            <div class="product-row">
+                <div class="product-col">
+                    <article class="product-item">
+                        <h3 class="product-name">boAt Rockerz 255</h3>
+                        <div class="product-description">
+                            <span class="product-separator">___________________________</span>
+                            <p class="product-type">In Ear Wireless Neckband</p>
+                        </div>
+                        <button class="add-to-cart-btn">Add to cart</button>
+                    </article>
+                </div>
+                <div class="product-col">
+                    <article class="product-item">
+                        <div class="product-details">
+                            <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/6fb8abcdc97cbc5a30a32741c76370f89a58ca8d1598527e7d52ff8ca27ca419?placeholderIfAbsent=true&apiKey=7c6eadc5edea4c4c8c1cb1bf9a911cb5" class="product-img" alt="JBL Wave 100" />
+                            <h3 class="product-name">JBL Wave 100</h3>
+                        </div>
+                        <div class="product-description">
+                            <span class="product-separator">___________________________</span>
+                            <p class="product-type">In Ear Truly Wireless Earbuds</p>
+                        </div>
+                        <button class="add-to-cart-btn">Add to cart</button>
+                    </article>
+                </div>
+                <div class="product-col">
+                    <article class="product-item">
+                        <div class="product-details">
+                            <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/ae755048f3e1f4bf862e92151d42149fb689317a51e6046481d6bab3f32534b3?placeholderIfAbsent=true&apiKey=7c6eadc5edea4c4c8c1cb1bf9a911cb5" class="product-img" alt="Sony WF-1000XM4" />
+                            <h3 class="product-name">Sony WF-1000XM4</h3>
+                        </div>
+                        <div class="product-description">
+                            <span class="product-separator">___________________________</span>
+                            <p class="product-type">Wireless In Ear NC</p>
+                        </div>
+                        <button class="add-to-cart-btn">Add to cart</button>
+                    </article>
+                </div>
+                <div class="product-col">
+                    <button class="browse-all-btn">Browse All Products</button>
+                </div>
+            </div>
+        </div>
+        <h2 class="advantages-title">Our Advantages</h2>
+        <div class="advantages-grid">
+            <div class="advantage-item">
+                <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/900b6f4f7c0e67d114903e1d58a5cbde3d0f34685d7c747a250b5df63768c1df?placeholderIfAbsent=true&apiKey=7c6eadc5edea4c4c8c1cb1bf9a911cb5" class="advantage-icon" alt="Express Delivery icon" />
+                <div class="advantage-text">
+                    <h3>Express Delivery</h3>
+                    <p>Ships in 24 hours</p>
+                </div>
+            </div>
+            <div class="advantage-item">
+                <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/25475e6e2f0dcadfe41ae6e5256b55808832f9de396ba4efee8cbec24dba56dc?placeholderIfAbsent=true&apiKey=7c6eadc5edea4c4c8c1cb1bf9a911cb5" class="advantage-icon" alt="Brand Warranty icon" />
+                <div class="advantage-text">
+                    <h3>Brand Warranty</h3>
+                    <p>100% Original Products</p>
+                </div>
+            </div>
+            <div class="advantage-item">
+                <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/c0c0c6bb6a4ac8f6bc43cb1f423289308567b3bde4e7ea052ecdbcffaffa0167?placeholderIfAbsent=true&apiKey=7c6eadc5edea4c4c8c1cb1bf9a911cb5" class="advantage-icon" alt="Exciting Deals icon" />
+                <div class="advantage-text">
+                    <h3>Exciting Deals</h3>
+                    <p>On all prepaid orders</p>
+                </div>
+            </div>
+            <div class="advantage-item">
+                <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/3464be8a3692c45a74d05f85aed3806020b63c6e67962ca23f99ec7c43d55711?placeholderIfAbsent=true&apiKey=7c6eadc5edea4c4c8c1cb1bf9a911cb5" class="advantage-icon" alt="Secure Payments icon" />
+                <div class="advantage-text">
+                    <h3>Secure Payments</h3>
+                    <p>Secure Certificate</p>
+                </div>
+            </div>
+        </div>
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <div class="footer-section">
+                        <h2 class="footer-title">Tech Shop</h2>
+                        <p>Subscribe to our Email alerts to receive early discount offers, and new products info.</p>
+                        <form class="newsletter-form">
+                            <label for="email" class="visually-hidden">Email Address</label>
+                            <input type="email" id="email" class="newsletter-input" placeholder="Email Address*" required>
+                            <button type="submit" class="subscribe-btn">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <div class="footer-section">
+                        <h3 class="footer-title">Help</h3>
+                        <a href="#" class="footer-link">FAQs</a>
+                        <a href="#" class="footer-link">Track Order</a>
+                        <a href="#" class="footer-link">Cancel Order</a>
+                        <a href="#" class="footer-link">Return Order</a>
+                        <a href="#" class="footer-link">Warranty Info</a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <div class="footer-section">
+                        <h3 class="footer-title">Policies</h3>
+                        <a href="#" class="footer-link">Return Policy</a>
+                        <a href="#" class="footer-link">Security</a>
+                        <a href="#" class="footer-link">Site Map</a>
+                        <a href="#" class="footer-link">Privacy Policy</a>
+                        <a href="#" class="footer-link">Terms & Conditions</a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <div class="footer-section">
+                        <h3 class="footer-title">Company</h3>
+                        <a href="#" class="footer-link">About Us</a>
+                        <a href="#" class="footer-link">Contact Us</a>
+                        <a href="#" class="footer-link">Service Centre</a>
+                        <a href="#" class="footer-link">Careers</a>
+                        <a href="#" class="footer-link">Affiliates</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </section>
+</body>
+</html>

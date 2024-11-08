@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Signup Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    body {
+    background-color: #111;
+    font-family: Arial, sans-serif;
+    color: #fff;
+}
+
+.signup-container {
+    background-color: #222;
+    padding: 20px;
+    border-radius: 5px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.signup-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.signup-container p {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.signup-container a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.signup-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.signup-container input {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #333;
+    color: #fff;
+}
+
+.signup-container button {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #f00;
+    color: #fff;
+    cursor: pointer;
+}
+
+.signup-container .social-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.signup-container .social-buttons button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.signup-container .facebook-btn {
+    background-color: #3b5998;
+}
+
+.signup-container .google-btn {
+    background-color: #dd4b39;
+}
+
+.signup-container .twitter-btn {
+    background-color: #1da1f2;
+}
+</style>
+<body>
+    <div class="signup-container">
+        <span class="close">&times;</span>
+        <h2>Signup</h2>
+        <p>Already have an account? <a href="#">Login</a></p>
+        <form>
+            <input type="text" placeholder="Username">
+            <input type="email" placeholder="Email">
+            <input type="password" placeholder="Password">
+            <input type="password" placeholder="Confirm Password">
+            <button type="submit">Signup</button>
+            <p>or login with</p>
+            <div class="social-buttons">
+                <button class="facebook-btn">Facebook</button>
+                <button class="google-btn">Google</button>
+                <button class="twitter-btn">Twitter</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

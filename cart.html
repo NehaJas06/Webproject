@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <style>
+        /* Base styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #f5f5f5;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        /* Cart items */
+        .cart-items {
+            flex: 2;
+            background-color: #1e1e1e;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding: 10px 0;
+            border-bottom: 1px solid #333;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .cart-item img {
+            width: 80px;
+            height: auto;
+            margin-right: 20px;
+        }
+
+        .item-info {
+            flex: 1;
+        }
+
+        .item-title {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .price-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .current-price {
+            color: #ffffff;
+            font-size: 20px;
+        }
+
+        .original-price {
+            text-decoration: line-through;
+            color: #888888;
+        }
+
+        /* Quantity controls */
+        .quantity {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quantity button {
+            background-color: #333;
+            color: #f5f5f5;
+            border: none;
+            padding: 5px 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        /* Order summary */
+        .order-summary {
+            flex: 1;
+            background-color: #1e1e1e;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .summary-title {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .summary-item .discount {
+            color: #00ff00;
+        }
+
+        .summary-item .delivery {
+            color: #00ff00;
+        }
+
+        .total-price {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background-color: #ff0000;
+            color: #f5f5f5;
+            padding: 15px;
+            font-size: 18px;
+            text-align: center;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="cart-items">
+            <div class="cart-item">
+                <img src="images/jbl660nc-2.png" alt="Product Image">
+                <div class="item-info">
+                    <div class="item-title">JBL Live 660NC Wireless Over-Ear NC Headphones</div>
+                    <div class="price-info">
+                        <span class="current-price" data-price="9999">₹9,999</span>
+                        <span class="original-price">₹14,999</span>
+                    </div>
+                </div>
+                <div class="quantity">
+                    <button onclick="changeQuantity(this, -1)">-</button>
+                    <span class="quantity-value">1</span>
+                    <button onclick="changeQuantity(this, 1)">+</button>
+                </div>
+            </div>
+
+            <div class="cart-item">
+                <img src="images/boat518-2.png" alt="Product Image">
+                <div class="item-info">
+                    <div class="item-title">boAt Rockerz 518 On-Ear Wireless Headphones</div>
+                    <div class="price-info">
+                        <span class="current-price" data-price="1299">₹1,299</span>
+                        <span class="original-price">₹3,990</span>
+                    </div>
+                </div>
+                <div class="quantity">
+                    <button onclick="changeQuantity(this, -1)">-</button>
+                    <span class="quantity-value">1</span>
+                    <button onclick="changeQuantity(this, 1)">+</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="order-summary">
+            <div class="summary-title">Order Summary</div>
+            <div class="summary-item">
+                <span>Original Price</span>
+                <span id="original-price">₹22,978</span>
+            </div>
+            <div class="summary-item">
+                <span>Discount</span>
+                <span class="discount">-₹10,132</span>
+            </div>
+            <div class="summary-item">
+                <span>Delivery</span>
+                <span class="delivery">Free</span>
+            </div>
+            <div class="total-price">
+                <span>Total Price</span>
+                <span id="total-price">₹12,846</span>
+            </div>
+            <button class="checkout-btn">Checkout</button>
+        </div>
+    </div>
+
+    <script>
+        function changeQuantity(button, change) {
+            const quantitySpan = button.parentNode.querySelector('.quantity-value');
+            let quantity = parseInt(quantitySpan.textContent);
+            quantity = Math.max(1, quantity + change); // Ensure quantity doesn't go below 1
+            quantitySpan.textContent = quantity;
+
+            // Get the price per item and calculate new total for that item
+            const pricePerItem = parseInt(button.parentNode.parentNode.querySelector('.current-price').getAttribute('data-price'));
+            const itemTotalPrice = pricePerItem * quantity;
+            button.parentNode.parentNode.querySelector('.current-price').textContent = `₹${itemTotalPrice.toLocaleString()}`;
+
+            updateTotal();
+        }
+
+        function updateTotal() {
+            const itemPrices = document.querySelectorAll('.current-price');
+            let total = 0;
+            itemPrices.forEach(item => {
+                total += parseInt(item.textContent.replace('₹', '').replace(',', ''));
+            });
+
+            document.getElementById('total-price').textContent = `₹${total.toLocaleString()}`;
+        }
+    </script>
+</body>
+</html>
